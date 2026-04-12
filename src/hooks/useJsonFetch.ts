@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_URL } from '../config';
 import { Data } from '../interfaces';
 
 // кастомный хук получения данных от сервера:
@@ -16,7 +17,7 @@ const useJsonFetch = (url: string) => {
 
       try {
         // получаем данные:
-        const response = await fetch(import.meta.env.VITE_URL + url, { signal: controller.signal });
+        const response = await fetch(API_URL + url, { signal: controller.signal });
         const json = await response.json();
 
         if (!response.ok) {
