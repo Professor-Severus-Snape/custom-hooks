@@ -8,11 +8,15 @@ const useJsonFetch = (url: string) => {
   const [error, setError] = useState<Error | null>(null); // ошибка при получении данных от сервера
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchJson = async () => {
       setLoading(true);
+      setError(null);
 
       try {
-        const response = await fetch(import.meta.env.VITE_URL + url); // получаем данные
+        // получаем данные:
+        const response = await fetch(import.meta.env.VITE_URL + url, { signal: controller.signal });
         const json = await response.json();
 
         if (!response.ok) {
@@ -20,20 +24,26 @@ const useJsonFetch = (url: string) => {
         }
 
         setData(json);
-        setError(null);
       } catch (err) {
-        if (err instanceof Error) {
-          setError(err);
-        } else {
-          setError(new Error('Unknown error'));
+        // игнорируем отменённые запросы:
+        if (err instanceof Error && err.name === 'AbortError') {
+          return;
         }
+
+        setError(err instanceof Error ? err : new Error('Unknown error'));
         setData(null);
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchJson();
+
+    return () => {
+      controller.abort(); // отмена предыдущего запроса
+    };
   }, [url]);
 
   return { data, loading, error };

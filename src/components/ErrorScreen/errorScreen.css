@@ -1,0 +1,53 @@
+.error-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: calc(100vh - 2 * 50px);
+
+  background: linear-gradient(135deg, #f6f9fc, #eef2f7);
+}
+
+.error-screen__content {
+  max-width: 500px;
+  padding: 32px;
+  border-radius: 16px;
+
+  text-align: center;
+
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.error-screen__icon {
+  margin-bottom: 16px;
+  font-size: 48px;
+}
+
+.error-screen__title {
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.error-screen__message {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.error-screen__button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+
+  color: white;
+  font-size: inherit;
+
+  cursor: pointer;
+  background: #3498db;
+
+  transition: 0.2s;
+}
+
+.error-screen__button:hover {
+  background: #2980b9;
+}
