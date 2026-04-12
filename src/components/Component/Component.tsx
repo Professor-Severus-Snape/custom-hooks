@@ -1,10 +1,12 @@
 import useJsonFetch from '../../hooks/useJsonFetch';
 import Content from '../Content/Content';
+import { Items } from '../../interfaces';
+import { ServerResponse } from '../../interfaces/';
 
-const Component = ({ path, title }: { path: string; title: string }) => {
-  const dataProps = useJsonFetch(path);
+const Component = ({ path, title }: Items) => {
+  const response: ServerResponse = useJsonFetch(path); // { data, loading, error }
 
-  return <Content {...dataProps} title={title} />;
+  return <Content {...response} title={title} />;
 };
 
 export default Component;

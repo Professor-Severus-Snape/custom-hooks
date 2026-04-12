@@ -1,14 +1,11 @@
-import IData from '../../models/IData';
 import './content.css';
+import { ServerResponse } from '../../interfaces';
 
-interface IContentProps {
-  data: IData | null;
-  loading: boolean;
-  error: Error | null;
+interface Props extends ServerResponse {
   title: string;
 }
 
-const Content = ({ data, loading, error, title }: IContentProps) => {
+const Content = ({ data, loading, error, title }: Props) => {
   return (
     <div className="content">
       <h3 className="content__title">{title}:</h3>
@@ -21,13 +18,13 @@ const Content = ({ data, loading, error, title }: IContentProps) => {
 
       {error && (
         <div className="content__text content__text_error">
-          Sorry, you've got the Error: {error.message}
+          Sorry, you've got the error: "{error.message}"
         </div>
       )}
 
       {data && (
         <div className="content__text content__text_success">
-          Success! You've got the response: {JSON.stringify(data)}
+          Success! You've got the response: "{data.message}"
         </div>
       )}
     </div>
