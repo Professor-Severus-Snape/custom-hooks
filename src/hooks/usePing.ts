@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_URL } from '../config';
 
 const usePing = () => {
   const [showLoader, setShowLoader] = useState(false); // показ лоадера
@@ -17,7 +18,7 @@ const usePing = () => {
 
     const checkPing = async () => {
       try {
-        const response = await fetch(import.meta.env.VITE_URL + '/ping', {
+        const response = await fetch(API_URL + '/ping', {
           signal: controller.signal,
         });
 
