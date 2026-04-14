@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/RA_hooks-customHook-frontend/',
+  base: '/custom-hooks/',
   server: {
     open: true,
   },
