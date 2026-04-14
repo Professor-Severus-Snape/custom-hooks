@@ -1,22 +1,59 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/j9kfu6y02ei42uxl?svg=true)](https://ci.appveyor.com/project/Professor-Severus-Snape/ra-hooks-customhook-frontend)
+[![Client CI/CD](https://github.com/professor-severus-snape/custom-hooks/actions/workflows/client.yml/badge.svg)](https://github.com/professor-severus-snape/custom-hooks/actions/workflows/client.yml)
+[![Server CI/CD](https://github.com/professor-severus-snape/custom-hooks/actions/workflows/server.yml/badge.svg)](https://github.com/professor-severus-snape/custom-hooks/actions/workflows/server.yml)
 
-# Custom Hook (frontend)
+# Custom Hooks
 
-Реализуйте кастомный хук `useJsonFetch`, который позволяет с помощью `fetch` осуществлять HTTP-запросы.
+Простое демонстрационное приложение для работы с кастомными хуками в React.
 
-Использование этого хука должно выглядеть следующим образом:
-```javascript
-const [data, loading, error] = useJsonFetch(url, opts);
-```
+Приложение показывает работу хука `useJsonFetch`, который выполняет HTTP-запросы и возвращает состояние загрузки, данные и ошибки.  
+Также используется хук `usePing` для проверки доступности сервера перед загрузкой интерфейса.
 
-где:
-* `data` — данные, полученные после `response.json()`, не Promise, а именно данные;
-* `error` — ошибка: ошибка сети, ошибка ответа, если код не 20x, ошибка парсинга, если пришёл не JSON;
-* `loading` — boolean флаг, сигнализирующий о том, что загрузка идёт.
+## Демо
 
-Покажите использование этого хука на примере трёх компонентов, каждый из которых делает запросы на следующие адреса:
-* GET http://localhost:7070/data — успешное получение данных;
-* GET http://localhost:7070/error — получение 500 ошибки;
-* GET http://localhost:7070/loading — индикатор загрузки.
+Посмотреть демо можно [здесь](https://professor-severus-snape.github.io/custom-hooks/).
 
-Backend возьмите готовый.
+## Возможности
+
+- Проверка доступности сервера при запуске приложения через кастомный хук `usePing`
+- Выполнение HTTP-запросов через кастомный хук `useJsonFetch`
+- Обработка состояний (загрузка, успешный ответ, ошибка)
+- Отображение разных сценариев ответа сервера (success, error, loading)
+- Повторная попытка подключения к серверу
+
+## Технологии
+
+- React 19
+  - JSX
+  - functional components
+  - props
+  - useState, useEffect
+  - custom hooks
+  - обработка событий
+- типизация - TypeScript
+- линтинг - ESLint
+- сборка - Vite
+- Node.js, Express
+- REST API
+
+## CI/CD
+
+- GitHub Actions — линтинг и сборка клиентской и серверной частей приложения
+- GitHub Pages — деплой клиентской части приложения
+- Render.com — хостинг серверной части приложения
+
+## Архитектура
+
+Приложение построено по клиент-серверной архитектуре.
+
+- Клиент выполняет HTTP-запросы через кастомные хуки
+- Сервер возвращает JSON-ответы для различных сценариев (success, error, loading)
+
+## Структура проекта
+
+- `client/` — клиентская часть (frontend)
+- `server/` — серверная часть (backend)
+
+## Документация
+
+- [Frontend](./client/README.md)
+- [Backend](./server/README.md)
